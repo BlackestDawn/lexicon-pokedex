@@ -1,0 +1,20 @@
+{
+  "menu": [
+    {
+      "href": "/",
+      "title": "Home"
+    },
+    {
+      "href": "pokedex",
+      "title": "Pokedex"
+    },
+    {
+      "href": "/types",
+      "title": "Types"
+    },
+    {
+      "href": "/favourites",
+      "title": "Favourites"
+    }
+  ]
+}

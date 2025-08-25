@@ -1,7 +1,7 @@
 import { pokeGraphqlUrl } from "@/lib/data/consts";
+import type { PokemonBaseStats } from "@/lib/interfaces/responses";
 
-export const getBaseStats = async (name: string) => {
-  console.log(name);
+export const getBaseInfo = async (id: number[]): Promise<PokemonBaseStats[]> => {
   const response = await fetch(pokeGraphqlUrl, {
     method: "POST",
     headers: {
@@ -10,7 +10,7 @@ export const getBaseStats = async (name: string) => {
     body: JSON.stringify({
       query: `
 query getBaseStats {
-  pokemon(where: {name: {_eq: "${name.toLowerCase()}"}}) {
+  pokemon(where: {id: {_in: [${id.join(',')}]}}) {
     id
     name
     pokemonstats {
@@ -21,6 +21,7 @@ query getBaseStats {
     }
     pokemontypes {
       type {
+        id
         name
       }
     }

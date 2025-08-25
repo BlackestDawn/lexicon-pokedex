@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Search, X } from "lucide-react";
+import { Search } from "lucide-react";
 import { getIdFromName } from "@/lib/queries/search";
 
 export default function SearchBox() {
@@ -9,6 +9,7 @@ export default function SearchBox() {
   const router = useRouter();
 
   const handleSubmit = async (e) => {
+    if (!searchValue) return;
     e.preventDefault();
     const result = await getIdFromName(searchValue);
     router.push(`/pokemon/${result}`);
@@ -16,10 +17,6 @@ export default function SearchBox() {
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
-  };
-
-  const handleClear = () => {
-    setSearchValue("");
   };
 
   const handleKeyPress = (e) => {
@@ -30,10 +27,9 @@ export default function SearchBox() {
 
   return (
     <div>
-      <div className="flex justify-center py-4 max-w-4xl mx-auto">
-        <div className="p-2 items-center w-full max-w-md border-2 border-blue-600 rounded-2xl">
+      <div className="flex justify-center py-10 max-w-4xl mx-auto">
+        <div className="p-2 items-center w-full max-w-md border-1 border-gray-300 rounded-md shadow-lg">
           <div className="flex gap-1 items-center">
-            <Search className="h-5 w-5 pointer-events-none pl-2" />
             <input
               type="text"
               value={searchValue}
@@ -42,15 +38,13 @@ export default function SearchBox() {
               placeholder="Search for a Pokémon"
               className="w-full focus:outline-none"
             />
-            {searchValue && (
-              <button
-                type="button"
-                onClick={handleClear}
-                className="text-gray-700 hover:text-gray-900"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            )}
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="bg-blue-500 text-white px-2 py-1 rounded-md"
+            >
+              <Search className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </div>

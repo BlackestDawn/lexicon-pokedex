@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BasicCardProps } from "@/lib/interfaces/props";
 import { getTypeColor } from "@/lib/data/pokeType";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
 export default function BasicCard({
   id,
@@ -13,42 +15,53 @@ export default function BasicCard({
   const accentColor = getTypeColor(types[0].name);
 
   return (
-    <>
-      <Image
-        src={imageUrl}
-        alt={name}
-        width={100}
-        height={100}
-        className="rounded-full border-2 bg-white mx-auto"
-        style={{ borderColor: accentColor }}
-      />
-      <div className="text-center">
-        <span
-          className="px-2 py-1 rounded-4xl min-content"
-          style={{ color: accentColor, background: `color-mix(in srgb, ${accentColor} 20%, white)` }}
-        >
-          {`#${id.toString().padStart(4, "0")}`}
-        </span>
-      </div>
-      <p className="p-1 rounded-4xl text-center capitalize font-bold align-middle">
-        {name}
-      </p>
-      <div className="flex gap-2 justify-center">
-        {types.map((type) => {
-          const bgClr = getTypeColor(type.name);
-          return (
-            <span key={type.id} className="px-2 py-1 rounded-4xl capitalize text-white" style={{ background: bgClr }}>
-              {type.name}
+    <Link href={`/pokedex/${id}`} className="block h-full">
+      <Card className="flex flex-col h-full items-center border-5 border-blue-700 rounded-xl bg-sky-50 min-w-49">
+        <CardHeader className="text-center justify-center">
+          <Image
+            src={imageUrl}
+            alt={name}
+            width={120}
+            height={120}
+            content="fit"
+            className="rounded-full border-2 bg-white mx-auto"
+            style={{ borderColor: accentColor }}
+          />
+          <div className="mt-2">
+            <span
+              className="px-2 py-1 rounded-full min-content"
+              style={{ color: accentColor, background: `color-mix(in srgb, ${accentColor} 20%, white)` }}
+            >
+              {`#${id.toString().padStart(4, "0")}`}
             </span>
-          )
-        }
-        )}
-      </div>
-      <div className="flex flex-col w-full">
-        <p className="flex justify-between font-bold"><span>HP</span><span>{stats.hp}</span></p>
-        <p className="flex justify-between font-bold"><span>Attack</span><span>{stats.attack}</span></p>
-        <p className="flex justify-between font-bold"><span>Defense</span><span>{stats.defense}</span></p>
-      </div>
-    </>
+          </div>
+        </CardHeader>
+        <CardContent className="text-center space-y-3 flex-1 flex flex-col">
+          <div className="h-14 flex items-center justify-center">
+            <h3 className="text-lg capitalize font-bold leading-tight">
+              {name}
+            </h3>
+          </div>
+          <div className="flex gap-2 justify-center flex-wrap">
+            {types.map((type) => {
+              const bgClr = getTypeColor(type.name);
+              return (
+                <span key={type.id} className="px-2 py-1 rounded-full capitalize text-white" style={{ background: bgClr }}>
+                  {type.name}
+                </span>
+              )
+            }
+            )}
+          </div>
+        </CardContent>
+        <CardFooter className="w-full">
+          <div className="flex flex-col w-full space-y-1">
+            <div className="flex justify-between font-bold"><span>HP</span><span>{stats.hp}</span></div>
+            <div className="flex justify-between font-bold"><span>Attack</span><span>{stats.attack}</span></div>
+            <div className="flex justify-between font-bold"><span>Defense</span><span>{stats.defense}</span></div>
+          </div>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }

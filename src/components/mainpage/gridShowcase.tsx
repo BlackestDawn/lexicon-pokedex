@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Suspense } from "react";
 import { getRandomIds } from "@/lib/queries/search";
 import { getBaseInfo } from "@/lib/queries/fetchData";
@@ -23,15 +22,9 @@ async function ShowcaseGrid() {
   return (
     <section className="max-w-4xl mx-auto py-8">
       <h2 className="font-jersey font-bold text-4xl text-center pb-8">Featured Pokémon</h2>
-      <div className="grid grid-cols-4 grid-template-rows-[auto_auto_1fr_1fr_auto] gap-4 ">
+      <div className="grid grid-cols-4 gap-4 auto-rows-fr">
         {extractBasicCardData(cardsData).map((card) => (
-          <Link
-            key={card.id}
-            href={`/pokedex/${card.id}`}
-            className="grid grid-rows-subgrid row-span-5 gap-2 items-center border-5 border-blue-700 rounded-xl p-4 bg-sky-50"
-          >
-            <BasicCard {...card} />
-          </Link>
+          <BasicCard key={card.id} {...card} />
         ))}
       </div>
     </section>

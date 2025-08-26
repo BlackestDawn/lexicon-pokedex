@@ -8,7 +8,7 @@ import LoadingSpinner from "@/components/general/loadingSpinner";
 
 export default function ShowcaseRandoms() {
   return (
-    <div className=" bg-gradient-to-br [background-image:linear-gradient(-10deg,_#C97FE4,_#AECDF6)]">
+    <div className=" bg-gradient-to-br [background-image:linear-gradient(-10deg,_#F3E4FA,_#EEF5FC)]">
       <Suspense fallback={<LoadingSpinner />}>
         <ShowcaseGrid />
       </Suspense>
@@ -28,7 +28,7 @@ async function ShowcaseGrid() {
           <Link
             key={card.id}
             href={`/pokedex/${card.id}`}
-            className="grid grid-rows-subgrid row-span-5 gap-2 items-center border-5 border-blue-700 rounded-xl p-4 bg-green-50"
+            className="grid grid-rows-subgrid row-span-5 gap-2 items-center border-5 border-blue-700 rounded-xl p-4 bg-sky-50"
           >
             <BasicCard {...card} />
           </Link>

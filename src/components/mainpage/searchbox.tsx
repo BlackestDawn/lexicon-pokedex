@@ -12,7 +12,7 @@ export default function SearchBox() {
     if (!searchValue) return;
     e.preventDefault();
     const result = await getIdFromName(searchValue);
-    router.push(`/pokemon/${result}`);
+    router.push(`/pokedex/${result}`);
   };
 
   const handleInputChange = (e) => {

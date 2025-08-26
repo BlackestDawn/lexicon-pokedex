@@ -8,7 +8,7 @@ export default function RandomButton() {
 
   const handleClick = async () => {
     const ids = await getRandomIds();
-    router.push(`/pokemon/${ids[0]}`);
+    router.push(`/pokedex/${ids[0]}`);
   };
 
   return (

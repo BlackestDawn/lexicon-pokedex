@@ -27,7 +27,7 @@ async function ShowcaseGrid() {
         {extractBasicCardData(cardsData).map((card) => (
           <Link
             key={card.id}
-            href={`/pokemon/${card.id}`}
+            href={`/pokedex/${card.id}`}
             className="grid grid-rows-subgrid row-span-5 gap-2 items-center border-5 border-blue-700 rounded-xl p-4 bg-green-50"
           >
             <BasicCard {...card} />

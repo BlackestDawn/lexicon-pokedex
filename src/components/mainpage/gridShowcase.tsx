@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getRandomIds } from "@/lib/queries/search";
-import { getBaseInfo } from "@/lib/queries/fetchData";
+import { getBasicInfoById } from "@/lib/queries/fetchData";
 import BasicCard from "./basicCard";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 import LoadingSpinner from "@/components/general/loadingSpinner";
@@ -17,7 +17,7 @@ export default function ShowcaseRandoms() {
 
 async function ShowcaseGrid() {
   const ids = await getRandomIds(4);
-  const cardsData = await getBaseInfo(ids);
+  const cardsData = await getBasicInfoById(ids);
 
   return (
     <section className="max-w-4xl mx-auto py-8">

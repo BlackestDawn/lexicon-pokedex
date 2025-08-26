@@ -1,7 +1,7 @@
 import { pokeGraphqlUrl } from "@/lib/data/consts";
 import type { PokemonBaseStats } from "@/lib/interfaces/responses";
 
-export const getBaseInfo = async (id: number[]): Promise<PokemonBaseStats[]> => {
+export async function getBasicInfoById(id: number[]): Promise<PokemonBaseStats[]>  {
   const response = await fetch(pokeGraphqlUrl, {
     method: "POST",
     headers: {

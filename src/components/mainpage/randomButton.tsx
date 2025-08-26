@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import { getRandomIds } from "@/lib/queries/search";
-import { getBaseInfo } from "@/lib/queries/fetchData";
+import { getBasicInfoById } from "@/lib/queries/fetchData";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 import Image from "next/image";
 import BasicCard from "./basicCard";
@@ -12,7 +12,7 @@ export default function RandomButton() {
 
   const handleClick = async () => {
     const ids = await getRandomIds();
-    const data = await getBaseInfo(ids);
+    const data = await getBasicInfoById(ids);
     const cardData = extractBasicCardData(data);
     setCardProps(cardData[0]);
   };

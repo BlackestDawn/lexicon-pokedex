@@ -21,10 +21,10 @@ export default function BasicCard({
           <Image
             src={imageUrl}
             alt={name}
-            width={120}
-            height={120}
+            width={128}
+            height={128}
             content="fit"
-            className="rounded-full border-2 bg-white mx-auto"
+            className="rounded-full border-2 bg-white mx-auto max-h-32 max-w-32"
             style={{ borderColor: accentColor }}
           />
           <div className="mt-2">

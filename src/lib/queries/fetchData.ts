@@ -9,7 +9,7 @@ export async function getBasicInfoById(id: number[]): Promise<PokemonBaseStats[]
     },
     body: JSON.stringify({
       query: `
-query getBaseStats {
+query pokemonById {
   pokemon(where: {id: {_in: [${id.join(',')}]}}) {
     id
     name

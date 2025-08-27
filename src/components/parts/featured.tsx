@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import { getRandomIds } from "@/lib/queries/search";
 import { getBasicInfoById } from "@/lib/queries/fetchData";
-import BasicCard from "@/components/parts/basicCard";
-import { extractBasicCardData } from "@/lib/data/dataTransformation";
+import CardGrid from "@/components/parts/cardGrid";
 import LoadingSpinner from "@/components/sectors/loadingSpinner";
 
 export default function ShowcaseRandoms() {
@@ -22,11 +21,7 @@ async function ShowcaseGrid() {
   return (
     <section className="max-w-5xl mx-auto py-8">
       <h2 className="font-jersey font-bold text-4xl text-center pb-8">Featured Pokémon</h2>
-      <div className="grid grid-cols-4 gap-4 auto-rows-fr">
-        {extractBasicCardData(cardsData).map((card) => (
-          <BasicCard key={card.id} {...card} />
-        ))}
-      </div>
+      <CardGrid cards={cardsData} />
     </section>
   );
 }

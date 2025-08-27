@@ -17,7 +17,7 @@ export default function BasicCard({
 
   return (
     <Link href={`/pokedex/${id}`} className="block h-full">
-      <Card className="flex flex-col h-full items-center border-5 border-blue-700 rounded-xl bg-sky-50 min-w-49">
+      <Card className="flex flex-col h-full items-center border-5 border-blue-700 rounded-xl bg-sky-50 min-w-58">
         <CardHeader className="text-center justify-center">
           <Image
             src={imageUrl}

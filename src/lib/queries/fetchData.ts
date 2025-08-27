@@ -1,10 +1,9 @@
 import { pokeGraphqlUrl, defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
-import type { PokemonBaseStats } from "@/lib/interfaces/responses";
 import type { BasicTypeMatrix, BasicCardProps } from "@/lib/interfaces/props";
 import { PaginatedData } from "@/lib/interfaces/responses";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 
-export async function getBasicInfoById(id: number[]): Promise<PokemonBaseStats[]>  {
+export async function getBasicInfoById(id: number[]): Promise<BasicCardProps[]>  {
   const response = await fetch(pokeGraphqlUrl, {
     method: "POST",
     headers: {
@@ -38,7 +37,7 @@ query pokemonById {
     throw new Error(result.errors[0].message);
   }
 
-  return result.data.pokemon;
+  return extractBasicCardData(result.data.pokemon);
 }
 
 export async function getTypes(): Promise<BasicTypeMatrix[]> {

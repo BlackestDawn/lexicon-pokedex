@@ -13,8 +13,7 @@ export default function RandomButton() {
   const handleClick = async () => {
     const ids = await getRandomIds();
     const data = await getBasicInfoById(ids);
-    const cardData = extractBasicCardData(data);
-    setCardProps(cardData[0]);
+    setCardProps(data[0]);
   };
 
   return (

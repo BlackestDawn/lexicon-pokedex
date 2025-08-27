@@ -113,3 +113,47 @@ query pokemonByType {
   const maxNum = result.data.pokemontype_aggregate.aggregate.count;
   return { cardData, maxNum };
 }
+
+export async function getPageFromAll(page: number = defaultPageStart, limit: number = defaultPageLimit): Promise<PaginatedData>  {
+  const response = await fetch(pokeGraphqlUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+query getPageFromAll {
+  pokemon(limit: ${limit}, offset: ${(page - 1) * limit}) {
+    name
+    id
+    pokemonstats {
+      base_stat
+      stat {
+        name
+      }
+    }
+    pokemontypes {
+      type {
+        id
+        name
+      }
+    }
+  }
+  pokemon_aggregate {
+    aggregate {
+      count
+    }
+  }
+}`,
+    }),
+  });
+
+  const result = await response.json();
+  if (result.errors) {
+    throw new Error(result.errors[0].message);
+  }
+
+  const cardData = extractBasicCardData(result.data.pokemon);
+  const maxNum = result.data.pokemon_aggregate.aggregate.count;
+  return { cardData, maxNum };
+}

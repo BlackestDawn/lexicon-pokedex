@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { getRandomIds } from "@/lib/queries/search";
 import { getBasicInfoById } from "@/lib/queries/fetchData";
-import BasicCard from "./basicCard";
+import BasicCard from "@/components/general/basicCard";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 import LoadingSpinner from "@/components/general/loadingSpinner";
 

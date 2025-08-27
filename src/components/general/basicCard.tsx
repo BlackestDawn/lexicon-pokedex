@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BasicCardProps } from "@/lib/interfaces/props";
 import { getTypeColor } from "@/lib/data/pokeType";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import TypeTag from "@/components/general/typeTag";
 
 export default function BasicCard({
   id,
@@ -43,15 +44,7 @@ export default function BasicCard({
             </h3>
           </div>
           <div className="flex gap-2 justify-center flex-wrap">
-            {types.map((type) => {
-              const bgClr = getTypeColor(type.name);
-              return (
-                <span key={type.id} className="px-2 py-1 rounded-full capitalize text-white" style={{ background: bgClr }}>
-                  {type.name}
-                </span>
-              )
-            }
-            )}
+            {types.map((type) => <TypeTag key={type.id} name={type.name} />)}
           </div>
         </CardContent>
         <CardFooter className="w-full">

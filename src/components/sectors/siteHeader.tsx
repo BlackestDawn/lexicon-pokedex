@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "./navbar";
+import Navbar from "../parts/navbar";
 
 export default function SiteHeader() {
   return (

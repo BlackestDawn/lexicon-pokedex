@@ -4,7 +4,7 @@ import { getRandomIds } from "@/lib/queries/search";
 import { getBasicInfoById } from "@/lib/queries/fetchData";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 import Image from "next/image";
-import BasicCard from "@/components/general/basicCard";
+import BasicCard from "@/components/parts/basicCard";
 import { BasicCardProps } from "@/lib/interfaces/props";
 
 export default function RandomButton() {

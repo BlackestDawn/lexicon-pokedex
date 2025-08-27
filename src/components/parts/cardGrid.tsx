@@ -1,4 +1,4 @@
-import BasicCard from "./basicCard";
+import BasicCard from "@/components/parts/basicCard";
 import { BasicCardProps } from "@/lib/interfaces/props";
 
 export default function CardGrid({ cards }: { cards: BasicCardProps[] }) {

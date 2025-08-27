@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TypeTag from "@/components/general/typeTag";
+import TypeTag from "@/components/details/typeTag";
 import { getTypes } from "@/lib/queries/fetchData";
 import { TypeIdProp } from "@/lib/interfaces/props";
 

@@ -1,5 +1,5 @@
-import TypesBanner from "@/components/typespage/typesBanner";
-import LoadingSpinner from "@/components/general/loadingSpinner";
+import TypesBanner from "@/components/details/typesBanner";
+import LoadingSpinner from "@/components/sectors/loadingSpinner";
 import { Suspense } from "react";
 
 export default function TypesPageWrapper() {

@@ -1,6 +1,6 @@
-import RandomButton from "@/components/mainpage/randomButton";
-import SearchBox from "@/components/mainpage/searchbox";
-import ShowcaseRandoms from "@/components/mainpage/gridShowcase";
+import RandomButton from "@/components/parts/randomButton";
+import SearchBox from "@/components/parts/searchbox";
+import ShowcaseRandoms from "@/components/parts/gridShowcase";
 
 export default function Home() {
   return (

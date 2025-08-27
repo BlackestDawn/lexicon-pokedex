@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BasicCardProps } from "@/lib/interfaces/props";
 import { getTypeColor } from "@/lib/data/pokeType";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import TypeTag from "@/components/general/typeTag";
+import TypeTag from "@/components/details/typeTag";
 
 export default function BasicCard({
   id,

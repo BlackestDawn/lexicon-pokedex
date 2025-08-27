@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { getRandomIds } from "@/lib/queries/search";
 import { getBasicInfoById } from "@/lib/queries/fetchData";
-import BasicCard from "@/components/general/basicCard";
+import BasicCard from "@/components/parts/basicCard";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
-import LoadingSpinner from "@/components/general/loadingSpinner";
+import LoadingSpinner from "@/components/sectors/loadingSpinner";
 
 export default function ShowcaseRandoms() {
   return (

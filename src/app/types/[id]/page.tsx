@@ -1,12 +1,12 @@
-import TypesBanner from "@/components/typespage/typesBanner";
-import LoadingSpinner from "@/components/general/loadingSpinner";
+import TypesBanner from "@/components/details/typesBanner";
+import LoadingSpinner from "@/components/sectors/loadingSpinner";
 import { Suspense } from "react";
 import { TypesPageProp } from "@/lib/interfaces/props";
 import { notFound } from "next/navigation";
-import CardGrid from "@/components/general/cardGrid";
+import CardGrid from "@/components/parts/cardGrid";
 import { defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
 import { getPageByType } from "@/lib/queries/fetchData";
-import PageNavigator from "@/components/typespage/pageNavigator";
+import PageNavigator from "@/components/parts/pageNavigator";
 
 interface PageProps {
   params: {

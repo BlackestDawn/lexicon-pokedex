@@ -16,3 +16,19 @@ export interface BasicTypeMatrix {
   id: number;
   name: string;
 }
+
+export interface TypeIdProp {
+  type_id?: number;
+}
+
+export interface ParamsIdProp {
+  params: {
+    id: string;
+  };
+}
+
+export interface TypesPageProp {
+  type_id: number;
+  page: number;
+  limit: number;
+}

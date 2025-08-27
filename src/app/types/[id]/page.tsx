@@ -40,17 +40,17 @@ async function TypesPage({ type_id, page, limit }: TypesPageProp) {
   return (
     <>
       <div className="bg-gradient-to-br [background-image:linear-gradient(-10deg,_#C97FE4,_#AECDF6)]">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <TypesBanner type_id={type_id} />
         </div>
       </div>
       <div>
-        <div className="max-w-4xl mx-auto flex justify-center p-3">
+        <div className="max-w-5xl mx-auto flex justify-center p-3">
           <PageNavigator basePath={`/types/${type_id}`} currentPage={page} maxPages={maxPages} />
         </div>
       </div>
       <div className=" bg-gradient-to-br [background-image:linear-gradient(-10deg,_#F3E4FA,_#EEF5FC)]">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <CardGrid cards={cardsData} />
         </div>
       </div>

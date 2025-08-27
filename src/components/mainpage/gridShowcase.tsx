@@ -20,7 +20,7 @@ async function ShowcaseGrid() {
   const cardsData = await getBasicInfoById(ids);
 
   return (
-    <section className="max-w-4xl mx-auto py-8">
+    <section className="max-w-5xl mx-auto py-8">
       <h2 className="font-jersey font-bold text-4xl text-center pb-8">Featured Pokémon</h2>
       <div className="grid grid-cols-4 gap-4 auto-rows-fr">
         {extractBasicCardData(cardsData).map((card) => (

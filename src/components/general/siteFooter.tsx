@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function SiteFooter() {
   return (
     <div className="bg-gray-700">
-      <div className="flex flex-col justify-center max-w-4xl py-8 mx-auto items-center text-white">
+      <div className="flex flex-col justify-center max-w-6xl py-8 mx-auto items-center text-white">
         <div className="flex items-center gap-4 mb-4">
           <Image
             src="/Logo.png"

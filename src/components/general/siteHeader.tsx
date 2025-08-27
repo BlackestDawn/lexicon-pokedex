@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 
 export default function SiteHeader() {
   return (
-    <div className="flex justify-between max-w-4xl p-4 mx-auto items-center">
+    <div className="flex justify-between max-w-5xl p-4 mx-auto items-center">
       <div className="flex items-center gap-4">
         <Image
           src="/Logo.png"

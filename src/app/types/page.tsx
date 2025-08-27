@@ -1,17 +1,6 @@
-import TypesBanner from "@/components/details/typesBanner";
-import LoadingSpinner from "@/components/sectors/loadingSpinner";
-import { Suspense } from "react";
+import TypesBanner from "@/components/parts/typesBanner";
 
-export default function TypesPageWrapper() {
-  return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <TypesPage />
-    </Suspense>
-  )
-}
-
-
-async function TypesPage() {
+export default function TypesPage() {
   return (
     <>
       <div className="bg-gradient-to-br [background-image:linear-gradient(-10deg,_#C97FE4,_#AECDF6)]">

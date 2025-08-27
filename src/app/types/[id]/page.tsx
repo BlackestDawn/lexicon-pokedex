@@ -1,4 +1,4 @@
-import TypesBanner from "@/components/details/typesBanner";
+import TypesBanner from "@/components/parts/typesBanner";
 import LoadingSpinner from "@/components/sectors/loadingSpinner";
 import { Suspense } from "react";
 import { TypesPageProp } from "@/lib/interfaces/props";

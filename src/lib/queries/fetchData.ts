@@ -1,6 +1,6 @@
 import { pokeGraphqlUrl, defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
 import type { BasicTypeMatrix, BasicCardProps } from "@/lib/interfaces/props";
-import { PaginatedData } from "@/lib/interfaces/responses";
+import { PaginatedData, PokemonExtendedStats } from "@/lib/interfaces/responses";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 
 export async function getBasicInfoById(id: number[]): Promise<BasicCardProps[]>  {
@@ -156,4 +156,60 @@ query getPageFromAll {
   const cardData = extractBasicCardData(result.data.pokemon);
   const maxNum = result.data.pokemon_aggregate.aggregate.count;
   return { cardData, maxNum };
+}
+
+export async function getExtendedInfo(id: number): Promise<PokemonExtendedStats>  {
+  const response = await fetch(pokeGraphqlUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+query getExtendedStats {
+  pokemon(where: {id: {_eq: ${id}}}) {
+    name
+    id
+    pokemonstats {
+      base_stat
+      stat {
+        name
+      }
+    }
+    pokemontypes {
+      type {
+        id
+        name
+      }
+    }
+    pokemonabilities {
+      ability {
+        id
+        name
+      }
+    }
+    encounters {
+      locationarea {
+        id
+        name
+      }
+      max_level
+      min_level
+    }
+    pokemonmoves {
+      move {
+        id
+        name
+      }
+    }
+  }
+}`}),
+  });
+
+  const result = await response.json();
+  if (result.errors) {
+    throw new Error(result.errors[0].message);
+  }
+
+  return result.data.pokemon[0];
 }

@@ -10,16 +10,18 @@ import PageNavigator from "@/components/parts/pageNavigator";
 import ContentContainer from "@/components/sectors/contentContainer";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     page?: string;
     limit?: string;
-  };
+  }>;
 }
 
-export default function TypesPageWrapper({ params, searchParams }: PageProps) {
+export default async function TypesPageWrapper(props: PageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   if (!params.id) notFound();
 
   const page = searchParams.page ? parseInt(searchParams.page) : defaultPageStart;

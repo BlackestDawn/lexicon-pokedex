@@ -1,5 +1,3 @@
-import { FuseResultMatch } from "fuse.js";
-
 export interface BasicCardProps {
   id: number;
   name: string;
@@ -24,9 +22,9 @@ export interface TypeIdProp {
 }
 
 export interface ParamsIdProp {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export interface TypesPageProp {

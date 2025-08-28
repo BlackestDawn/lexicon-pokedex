@@ -6,7 +6,7 @@ import DetailsPage from "@/components/sectors/details";
 import ContentContainer from "@/components/sectors/contentContainer";
 
 export default async function Page({ params }: ParamsIdProp) {
-  const id = await params.id;
+  const { id } = await params;
   if (!id) notFound();
 
   const idNum = parseInt(id);

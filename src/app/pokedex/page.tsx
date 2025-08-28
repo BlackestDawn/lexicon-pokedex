@@ -6,13 +6,22 @@ import { getPageFromAll } from "@/lib/queries/fetchData";
 import { defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
 import ContentContainer from "@/components/sectors/contentContainer";
 
-export default function AllPokemons({ searchParams }: { searchParams: { page?: string, limit?: string } }) {
-  const page = searchParams.page ? parseInt(searchParams.page) : defaultPageStart;
-  const limit = searchParams.limit ? parseInt(searchParams.limit) : defaultPageLimit;
+interface PageProps {
+  searchParams: Promise<{
+    page?: string;
+    limit?: string;
+  }>;
+}
+
+
+export default async function AllPokemons({ searchParams }: PageProps) {
+  const { page, limit } = await searchParams;
+  const pageNum = page ? parseInt(page) : defaultPageStart;
+  const limitNum = limit ? parseInt(limit) : defaultPageLimit;
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <AllPokemonsGrid page={page} limit={limit} />
+      <AllPokemonsGrid page={pageNum} limit={limitNum} />
     </Suspense>
   );
 }

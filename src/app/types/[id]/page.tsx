@@ -7,6 +7,7 @@ import CardGrid from "@/components/parts/cardGrid";
 import { defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
 import { getPageByType } from "@/lib/queries/fetchData";
 import PageNavigator from "@/components/parts/pageNavigator";
+import ContentContainer from "@/components/sectors/contentContainer";
 
 interface PageProps {
   params: {
@@ -39,21 +40,15 @@ async function TypesPage({ type_id, page, limit }: TypesPageProp) {
 
   return (
     <>
-      <div className="bg-gradient-to-br [background-image:linear-gradient(-10deg,_#C97FE4,_#AECDF6)]">
-        <div className="max-w-5xl mx-auto">
-          <TypesBanner type_id={type_id} />
-        </div>
-      </div>
-      <div>
-        <div className="max-w-5xl mx-auto flex justify-center p-3">
-          <PageNavigator basePath={`/types/${type_id}`} currentPage={page} maxPages={maxPages} />
-        </div>
-      </div>
-      <div className=" bg-gradient-to-br [background-image:linear-gradient(-10deg,_#F3E4FA,_#EEF5FC)]">
-        <div className="max-w-5xl mx-auto">
-          <CardGrid cards={cardsData} />
-        </div>
-      </div>
+      <ContentContainer type="strong">
+        <TypesBanner type_id={type_id} />
+      </ContentContainer>
+      <ContentContainer className="flex justify-center p-3">
+        <PageNavigator basePath={`/types/${type_id}`} currentPage={page} maxPages={maxPages} />
+      </ContentContainer>
+      <ContentContainer type="weak">
+        <CardGrid cards={cardsData} />
+      </ContentContainer>
     </>
   )
 }

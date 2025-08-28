@@ -14,7 +14,7 @@ export default async function DetailsPage({ id }: IdProps) {
   const encounters = getUniqueEncounters(response.encounters);
 
   return (
-    <div className="flex flex-col align-middle justify-center gap-4">
+    <div className="flex flex-col align-middle justify-center gap-4 py-6">
       <div className="flex justify-center align-middle gap-4">
         <div>
           <Image src={getImageFromId(id)} alt={response.name} width={256} height={256} />

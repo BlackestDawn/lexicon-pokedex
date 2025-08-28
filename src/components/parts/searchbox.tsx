@@ -27,7 +27,7 @@ export default function SearchBox() {
 
   return (
     <div>
-      <div className="flex justify-center py-10 max-w-4xl mx-auto">
+      <div className="flex justify-center py-10">
         <div className="p-2 items-center w-full max-w-md border-1 border-gray-300 rounded-md shadow-lg">
           <div className="flex gap-1 items-center">
             <input

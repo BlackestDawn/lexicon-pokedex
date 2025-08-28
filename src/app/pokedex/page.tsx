@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import LoadingSpinner from "@/components/sectors/loadingSpinner";
 import { getPageFromAll } from "@/lib/queries/fetchData";
 import { defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
+import ContentContainer from "@/components/sectors/contentContainer";
 
 export default function AllPokemons({ searchParams }: { searchParams: { page?: string, limit?: string } }) {
   const page = searchParams.page ? parseInt(searchParams.page) : defaultPageStart;
@@ -23,21 +24,15 @@ async function AllPokemonsGrid({ page, limit }: { page: number, limit: number })
 
   return (
     <>
-      <div className="bg-gradient-to-br [background-image:linear-gradient(-10deg,_#C97FE4,_#AECDF6)]">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="font-jersey font-bold text-6xl text-center py-8">All Pokémons</h2>
-        </div>
-      </div>
-      <div>
-        <div className="max-w-5xl mx-auto flex justify-center p-3">
-          <PageNavigator basePath={`/pokedex`} currentPage={page} maxPages={maxPages} />
-        </div>
-      </div>
-      <div className=" bg-gradient-to-br [background-image:linear-gradient(-10deg,_#F3E4FA,_#EEF5FC)]">
-        <div className="max-w-5xl mx-auto">
-          <CardGrid cards={cardsData} />
-        </div>
-      </div>
+      <ContentContainer type="strong">
+        <h2 className="font-jersey font-bold text-6xl text-center py-8">All Pokémons</h2>
+      </ContentContainer>
+      <ContentContainer className="flex justify-center p-3">
+        <PageNavigator basePath={`/pokedex`} currentPage={page} maxPages={maxPages} />
+      </ContentContainer>
+      <ContentContainer type="weak">
+        <CardGrid cards={cardsData} />
+      </ContentContainer>
     </>
   )
 }

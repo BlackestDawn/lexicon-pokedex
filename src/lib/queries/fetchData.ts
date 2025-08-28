@@ -3,16 +3,7 @@ import type { BasicTypeMatrix, BasicCardProps } from "@/lib/interfaces/props";
 import { PaginatedData, PokemonExtendedStats } from "@/lib/interfaces/responses";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 
-export async function getBasicInfoById(id: number[]): Promise<BasicCardProps[]>  {
-  const response = await fetch(pokeGraphqlUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: `
-query pokemonById {
-  pokemon(where: {id: {_in: [${id.join(',')}]}}) {
+const baseInfoPart = `
     id
     name
     pokemonstats {
@@ -27,6 +18,19 @@ query pokemonById {
         name
       }
     }
+`;
+
+export async function getBasicInfoById(id: number[]): Promise<BasicCardProps[]>  {
+  const response = await fetch(pokeGraphqlUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+query pokemonById {
+  pokemon(where: {id: {_in: [${id.join(',')}]}}) {
+    ${baseInfoPart}
   }
 }`,
     }),
@@ -80,20 +84,7 @@ export async function getPageByType(type_id: number, page: number = defaultPageS
       query: `
 query pokemonByType {
   pokemon(where: {pokemontypes: {type_id: {_eq: ${type_id}}}}, limit: ${limit}, offset: ${(page - 1) * limit}) {
-    id
-    name
-    pokemonstats {
-      base_stat
-      stat {
-        name
-      }
-    }
-    pokemontypes {
-      type {
-        name
-        id
-      }
-    }
+    ${baseInfoPart}
   }
   pokemontype_aggregate(where: {type_id: {_eq: ${type_id}}}) {
     aggregate {
@@ -124,20 +115,7 @@ export async function getPageFromAll(page: number = defaultPageStart, limit: num
       query: `
 query getPageFromAll {
   pokemon(limit: ${limit}, offset: ${(page - 1) * limit}) {
-    name
-    id
-    pokemonstats {
-      base_stat
-      stat {
-        name
-      }
-    }
-    pokemontypes {
-      type {
-        id
-        name
-      }
-    }
+    ${baseInfoPart}
   }
   pokemon_aggregate {
     aggregate {
@@ -168,20 +146,7 @@ export async function getExtendedInfo(id: number): Promise<PokemonExtendedStats>
       query: `
 query getExtendedStats {
   pokemon(where: {id: {_eq: ${id}}}) {
-    name
-    id
-    pokemonstats {
-      base_stat
-      stat {
-        name
-      }
-    }
-    pokemontypes {
-      type {
-        id
-        name
-      }
-    }
+    ${baseInfoPart}
     pokemonabilities {
       ability {
         id

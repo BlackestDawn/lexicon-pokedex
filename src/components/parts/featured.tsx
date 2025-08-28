@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { getRandomIds } from "@/lib/queries/search";
 import { getBasicInfoById } from "@/lib/queries/fetchData";
 import CardGrid from "@/components/parts/cardGrid";
-import LoadingSpinner from "@/components/sectors/loadingSpinner";
+import LoadingSpinner from "@/components/parts/loadingSpinner";
 
 export default function ShowcaseRandoms() {
   return (

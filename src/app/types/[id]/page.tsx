@@ -1,5 +1,5 @@
 import TypesBanner from "@/components/parts/typesBanner";
-import LoadingSpinner from "@/components/sectors/loadingSpinner";
+import LoadingSpinner from "@/components/parts/loadingSpinner";
 import { Suspense } from "react";
 import { TypesPageProp } from "@/lib/interfaces/props";
 import { notFound } from "next/navigation";

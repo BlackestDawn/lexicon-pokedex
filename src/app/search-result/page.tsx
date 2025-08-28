@@ -1,5 +1,5 @@
 import ContentContainer from "@/components/sectors/contentContainer";
-import LoadingSpinner from "@/components/sectors/loadingSpinner";
+import LoadingSpinner from "@/components/parts/loadingSpinner";
 import { Suspense } from "react";
 import { searchByName } from "@/lib/queries/search";
 import SearchBox from "@/components/parts/searchbox";

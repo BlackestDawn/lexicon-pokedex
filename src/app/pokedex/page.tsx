@@ -1,7 +1,7 @@
 import CardGrid from "@/components/parts/cardGrid";
 import PageNavigator from "@/components/parts/pageNavigator";
 import { Suspense } from "react";
-import LoadingSpinner from "@/components/sectors/loadingSpinner";
+import LoadingSpinner from "@/components/parts/loadingSpinner";
 import { getPageFromAll } from "@/lib/queries/fetchData";
 import { defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
 import ContentContainer from "@/components/sectors/contentContainer";

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import LoadingSpinner from "@/components/sectors/loadingSpinner";
+import LoadingSpinner from "@/components/parts/loadingSpinner";
 import { ParamsIdProp } from "@/lib/interfaces/props";
 import { notFound } from "next/navigation";
 import DetailsPage from "@/components/sectors/details";

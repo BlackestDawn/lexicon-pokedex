@@ -1,3 +1,5 @@
+import { FuseResultMatch } from "fuse.js";
+
 export interface BasicCardProps {
   id: number;
   name: string;

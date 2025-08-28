@@ -54,3 +54,8 @@ export interface PokemonEncounter {
   min_level: number;
   max_level: number;
 }
+
+export interface SearchResult {
+  id: number;
+  name: string;
+}

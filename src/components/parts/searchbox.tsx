@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { getIdFromName } from "@/lib/queries/search";
 
 export default function SearchBox() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -11,8 +10,7 @@ export default function SearchBox() {
   const handleSubmit = async (e) => {
     if (!searchValue) return;
     e.preventDefault();
-    const result = await getIdFromName(searchValue);
-    router.push(`/pokedex/${result}`);
+    router.push(`/search-result?query=${searchValue}`);
   };
 
   const handleInputChange = (e) => {

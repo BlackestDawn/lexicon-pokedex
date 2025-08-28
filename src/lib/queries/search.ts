@@ -1,6 +1,8 @@
-import { pokeGraphqlUrl } from "../data/consts";
+import { pokeGraphqlUrl } from "@/lib/data/consts";
+import { SearchResult } from "@/lib/interfaces/responses";
 
-export async function getIdFromName(name: string) {
+
+export async function searchByName(name: string): Promise<SearchResult[]> {
   const response = await fetch(pokeGraphqlUrl, {
     method: "POST",
     headers: {
@@ -9,8 +11,9 @@ export async function getIdFromName(name: string) {
     body: JSON.stringify({
       query: `
         query {
-          pokemon(where: {name: {_eq: "${name.toLowerCase()}"}}) {
+          pokemon(where: {name: {_iregex: "${name}"}}) {
             id
+            name
           }
         }
       `,
@@ -22,7 +25,7 @@ export async function getIdFromName(name: string) {
     throw new Error(result.errors[0].message);
   }
 
-  return result.data.pokemon.id;
+  return result.data.pokemon;
 }
 
 export async function getRandomIds(count: number = 1): Promise<number[]> {

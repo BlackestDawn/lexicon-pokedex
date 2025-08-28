@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getExtendedInfo } from "@/lib/queries/fetchData";
-import { getImageFromId } from "@/lib/data/helpers";
+import { getImageUrlFromId } from "@/lib/data/helpers";
 import TypeTag from "@/components/details/typeTag";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -15,7 +15,7 @@ export default async function DetailsPage({ id }: IdProps) {
     <div className="flex flex-col align-middle justify-center gap-4 py-6">
       <div className="flex justify-center align-middle gap-4">
         <div>
-          <Image src={getImageFromId(id)} alt={response.name} width={256} height={256} />
+          <Image src={getImageUrlFromId(id)} alt={response.name} width={256} height={256} />
         </div>
         <div className="my-auto">
           <h2 className="text-5xl font-bold capitalize">{response.name}</h2>

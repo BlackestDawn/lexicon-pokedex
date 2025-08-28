@@ -1,5 +1,6 @@
 import type { BasicCardProps, BaseStatMatrix, BasicTypeMatrix } from "@/lib/interfaces/props";
 import type { PokemonBaseStats } from "@/lib/interfaces/responses";
+import { getImageUrlFromId } from "./helpers";
 
 export function extractBasicCardData(data: PokemonBaseStats[]): BasicCardProps[] {
   return data.map((pokemon) => {
@@ -23,7 +24,7 @@ export function extractBasicCardData(data: PokemonBaseStats[]): BasicCardProps[]
       name: pokemon.name,
       stats: stats,
       types: types,
-      imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
+      imageUrl: getImageUrlFromId(pokemon.id),
     };
   });
 }

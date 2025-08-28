@@ -165,6 +165,10 @@ query getExtendedStats {
       move {
         id
         name
+        accuracy
+        pp
+        power
+        priority
       }
     }
   }

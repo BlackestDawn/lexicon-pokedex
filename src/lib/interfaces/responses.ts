@@ -43,6 +43,10 @@ export interface PokemonMove {
   move: {
     id: number;
     name: string;
+    accuracy: number | null;
+    pp: number;
+    power: number | null;
+    priority: number;
   };
 }
 

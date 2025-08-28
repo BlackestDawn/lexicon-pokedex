@@ -48,7 +48,7 @@ export default async function DetailsPage({ id }: IdProps) {
           <table className="w-full capitalize max-w-1/4 min-w-3xs">
             <thead className="font-bold">
               <tr>
-                <th className="p-1">Base abilities</th>
+                <th className="p-1">Abilities</th>
               </tr>
             </thead>
             <tbody>
@@ -63,12 +63,21 @@ export default async function DetailsPage({ id }: IdProps) {
       </div>
       <div className="flex gap-4 justify-center">
         <div>
-          <h4 className="text-center font-bold p-1">Available Moves</h4>
+          <h4 className="text-center font-bold p-1">Available Attacks/Moves</h4>
           <ScrollArea className="h-72 w-80 rounded-md border-2 border-gray-300">
             <div className="w-full capitalize p-2">
-              {response.pokemonmoves.map((move) => (
+              {response.pokemonmoves.map((move, i) => (
                 <div key={move.move.id}>
-                  <p className="p-1">{move.move.name.replaceAll("-", " ")}</p>
+                  {i > 0 && <hr />}
+                  <p className="m-1">{move.move.name.replaceAll("-", " ")}</p>
+                  <p className="m-1 flex justify-between">
+                    {move.move.accuracy !== null && <span>Accuracy: {move.move.accuracy}</span>}
+                    {move.move.power !== null && <span>Power: {move.move.power}</span>}
+                  </p>
+                  <p className="m-1 flex justify-between">
+                    <span>PP: {move.move.pp}</span>
+                    <span>Priority: {move.move.priority}</span>
+                  </p>
                 </div>
               ))}
             </div>
@@ -80,11 +89,9 @@ export default async function DetailsPage({ id }: IdProps) {
             <div className="w-full capitalize p-2">
               {response.encounters.map((encounter, i) => (
                 <div key={encounter.locationarea.id}>
-                  <div>
-                    { i > 0 && <hr /> }
-                    <p className="p-1">{encounter.locationarea.name.replaceAll("-", " ")}</p>
-                    <p className="p-1">Level range: {encounter.min_level} - {encounter.max_level}</p>
-                  </div>
+                  {i > 0 && <hr />}
+                  <p className="m-1">{encounter.locationarea.name.replaceAll("-", " ")}</p>
+                  <p className="m-1">Level range: {encounter.min_level} - {encounter.max_level}</p>
                 </div>
               ))}
             </div>

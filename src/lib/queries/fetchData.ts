@@ -153,7 +153,7 @@ query getExtendedStats {
         name
       }
     }
-    encounters {
+    encounters(distinct_on: location_area_id) {
       locationarea {
         id
         name
@@ -161,7 +161,7 @@ query getExtendedStats {
       max_level
       min_level
     }
-    pokemonmoves {
+    pokemonmoves(distinct_on: move_id) {
       move {
         id
         name

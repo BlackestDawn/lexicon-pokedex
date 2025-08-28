@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getExtendedInfo } from "@/lib/queries/fetchData";
-import { getImageFromId, getUniqueMoves, getUniqueEncounters } from "@/lib/data/helpers";
+import { getImageFromId } from "@/lib/data/helpers";
 import TypeTag from "@/components/details/typeTag";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -10,8 +10,6 @@ interface IdProps {
 
 export default async function DetailsPage({ id }: IdProps) {
   const response = await getExtendedInfo(id);
-  const moves = getUniqueMoves(response.pokemonmoves);
-  const encounters = getUniqueEncounters(response.encounters);
 
   return (
     <div className="flex flex-col align-middle justify-center gap-4 py-6">
@@ -68,7 +66,7 @@ export default async function DetailsPage({ id }: IdProps) {
           <h4 className="text-center font-bold p-1">Available Moves</h4>
           <ScrollArea className="h-72 w-80 rounded-md border-2 border-gray-300">
             <div className="w-full capitalize p-2">
-              {moves.map((move) => (
+              {response.pokemonmoves.map((move) => (
                 <div key={move.move.id}>
                   <p className="p-1">{move.move.name.replaceAll("-", " ")}</p>
                 </div>
@@ -80,7 +78,7 @@ export default async function DetailsPage({ id }: IdProps) {
           <h4 className="text-center font-bold p-1">Encounter Locations</h4>
           <ScrollArea className="h-72 w-80 rounded-md border-2 border-gray-300">
             <div className="w-full capitalize p-2">
-              {encounters.map((encounter, i) => (
+              {response.encounters.map((encounter, i) => (
                 <div key={encounter.locationarea.id}>
                   <div>
                     { i > 0 && <hr /> }

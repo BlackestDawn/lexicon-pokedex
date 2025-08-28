@@ -39,7 +39,7 @@ async function AllPokemonsGrid({ page, limit }: { page: number, limit: number })
       <ContentContainer className="flex justify-center p-3">
         <PageNavigator basePath={`/pokedex`} currentPage={page} maxPages={maxPages} />
       </ContentContainer>
-      <ContentContainer type="weak">
+      <ContentContainer type="weak" className="py-6">
         <CardGrid cards={cardsData} />
       </ContentContainer>
     </>

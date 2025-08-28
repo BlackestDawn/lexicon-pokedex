@@ -48,7 +48,7 @@ async function TypesPage({ type_id, page, limit }: TypesPageProp) {
       <ContentContainer className="flex justify-center p-3">
         <PageNavigator basePath={`/types/${type_id}`} currentPage={page} maxPages={maxPages} />
       </ContentContainer>
-      <ContentContainer type="weak">
+      <ContentContainer type="weak" className="py-6">
         <CardGrid cards={cardsData} />
       </ContentContainer>
     </>

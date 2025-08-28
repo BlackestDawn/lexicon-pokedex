@@ -14,7 +14,7 @@ export default function Home() {
       <ContentContainer color="bg-white">
         <SearchBox />
       </ContentContainer>
-      <ContentContainer type="weak">
+      <ContentContainer type="weak" className="pb-6">
         <ShowcaseRandoms />
       </ContentContainer>
     </div>

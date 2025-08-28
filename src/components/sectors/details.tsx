@@ -50,7 +50,7 @@ export default async function DetailsPage({ id }: IdProps) {
           <table className="w-full capitalize max-w-1/4 min-w-3xs">
             <thead className="font-bold">
               <tr>
-                <th className="p-1">Moves</th>
+                <th className="p-1">Base abilities</th>
               </tr>
             </thead>
             <tbody>

@@ -1,13 +1,14 @@
-import TypesBanner from "@/components/parts/typesBanner";
-import ContentContainer from "@/components/sectors/contentContainer";
+import TypesBanner from "@/components/sectors/typesBanner";
+import MainHeader from "@/components/sectors/mainHeader";
 
 export default function TypesPage() {
   return (
-    <ContentContainer type="strong">
-      <TypesBanner />
+    <>
+      <MainHeader />
       <div className="text-center py-4">
-        <p>Here you can list all Pokémons by type.</p>
+        <p>Here you can browse through all Pokémons by type.</p>
       </div>
-    </ContentContainer>
+      <TypesBanner />
+    </>
   )
 }

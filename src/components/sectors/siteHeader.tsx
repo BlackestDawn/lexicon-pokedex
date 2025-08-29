@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Navbar from "../parts/navbar";
-import ContentContainer from "./contentContainer";
+import ContentContainer from "../parts/contentContainer";
 
 export default function SiteHeader() {
   return (

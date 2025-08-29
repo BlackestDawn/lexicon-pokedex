@@ -3,7 +3,7 @@ import LoadingSpinner from "@/components/parts/loadingSpinner";
 import { ParamsIdProp } from "@/lib/interfaces/props";
 import { notFound } from "next/navigation";
 import DetailsPage from "@/components/sectors/details";
-import ContentContainer from "@/components/sectors/contentContainer";
+import MainHeader from "@/components/sectors/mainHeader";
 
 export default async function Page({ params }: ParamsIdProp) {
   const { id } = await params;
@@ -13,9 +13,8 @@ export default async function Page({ params }: ParamsIdProp) {
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <ContentContainer type="strong">
-        <DetailsPage id={idNum} />
-      </ContentContainer>
+      <MainHeader />
+      <DetailsPage id={idNum} />
     </Suspense>
   )
 }

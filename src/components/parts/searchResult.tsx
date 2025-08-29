@@ -1,28 +1,23 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
-import { SearchResult } from "@/lib/interfaces/responses";
+import CardGrid from "@/components/sectors/cardGrid";
+import { searchByName } from "@/lib/queries/search";
 
-export default function SearchResults({ result }: { result: SearchResult[] }) {
-  if (result.length === 1) redirect(`/pokedex/${result[0].id}`);
+interface PageProps {
+  query?: string;
+}
+
+export default async function SearchResults({ query }: PageProps) {
+  let result: number[] = [];
+  if (query) result = await searchByName(query);
+
+  if (result.length === 1) redirect(`/pokedex/${result[0]}`);
 
   return (
     <>
       {result.length > 0 ? (
-        <div className="flex flex-col items-center">
-          <h3 className="text-2xl font-bold text-center mb-4">Multiple matches</h3>
-          <div className="flex flex-wrap max-w-lg justify-center items-center gap-2 capitalize">
-            {result.map((r) => (
-              <Link
-                key={r.id}
-                href={`/pokedex/${r.id}`}
-              >
-                {r.name.replaceAll("-", " ")}
-              </Link>
-            ))}
-          </div>
-        </div>
+        <CardGrid ids={result} title={`Search results for "${query}"`} />
       ) : (
-        <p className="text-2xl font-bold text-center">No matches found.</p>
+        <p className="text-2xl font-bold text-center pb-4">No matches found.</p>
       )}
     </>
   );

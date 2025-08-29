@@ -1,5 +1,3 @@
-import { BasicCardProps } from "./props";
-
 export interface PokemonBaseStats {
   id: number;
   name: string;
@@ -22,7 +20,7 @@ interface PokemonType {
 }
 
 export interface PaginatedData {
-  cardData: BasicCardProps[];
+  ids: number[];
   maxNum: number;
 }
 
@@ -57,9 +55,4 @@ export interface PokemonEncounter {
   };
   min_level: number;
   max_level: number;
-}
-
-export interface SearchResult {
-  id: number;
-  name: string;
 }

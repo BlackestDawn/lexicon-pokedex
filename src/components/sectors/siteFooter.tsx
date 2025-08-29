@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import ContentContainer from "./contentContainer";
+import ContentContainer from "../parts/contentContainer";
 
 export default function SiteFooter() {
   return (

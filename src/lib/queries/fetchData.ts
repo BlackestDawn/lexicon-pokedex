@@ -1,5 +1,5 @@
 import { pokeGraphqlUrl, defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
-import type { BasicTypeMatrix, BasicCardProps } from "@/lib/interfaces/props";
+import type { BasicCardProps } from "@/lib/interfaces/props";
 import { PaginatedData, PokemonExtendedStats } from "@/lib/interfaces/responses";
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 
@@ -44,36 +44,6 @@ query pokemonById {
   return extractBasicCardData(result.data.pokemon);
 }
 
-export async function getTypes(): Promise<BasicTypeMatrix[]> {
-  const response = await fetch(pokeGraphqlUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: `
-        query getTypes {
-          pokemontype(distinct_on: type_id) {
-            type {
-              id
-              name
-            }
-          }
-        }
-      `,
-    }),
-  });
-  const result = await response.json();
-  if (result.errors) {
-    throw new Error(result.errors[0].message);
-  }
-
-  return result.data.pokemontype.map((type: { type: { id: number, name: string } }): BasicTypeMatrix => ({
-    id: type.type.id,
-    name: type.type.name,
-  }));
-}
-
 export async function getPageByType(type_id: number, page: number = defaultPageStart, limit: number = defaultPageLimit): Promise<PaginatedData>  {
   const response = await fetch(pokeGraphqlUrl, {
     method: "POST",
@@ -84,7 +54,7 @@ export async function getPageByType(type_id: number, page: number = defaultPageS
       query: `
 query pokemonByType {
   pokemon(where: {pokemontypes: {type_id: {_eq: ${type_id}}}}, limit: ${limit}, offset: ${(page - 1) * limit}) {
-    ${baseInfoPart}
+    id
   }
   pokemontype_aggregate(where: {type_id: {_eq: ${type_id}}}) {
     aggregate {
@@ -100,9 +70,9 @@ query pokemonByType {
     throw new Error(result.errors[0].message);
   }
 
-  const cardData = extractBasicCardData(result.data.pokemon);
+  const ids = result.data.pokemon.map((pokemon: { id: number }) => pokemon.id);
   const maxNum = result.data.pokemontype_aggregate.aggregate.count;
-  return { cardData, maxNum };
+  return { ids, maxNum };
 }
 
 export async function getPageFromAll(page: number = defaultPageStart, limit: number = defaultPageLimit): Promise<PaginatedData>  {
@@ -115,7 +85,7 @@ export async function getPageFromAll(page: number = defaultPageStart, limit: num
       query: `
 query getPageFromAll {
   pokemon(limit: ${limit}, offset: ${(page - 1) * limit}) {
-    ${baseInfoPart}
+    id
   }
   pokemon_aggregate {
     aggregate {
@@ -131,9 +101,9 @@ query getPageFromAll {
     throw new Error(result.errors[0].message);
   }
 
-  const cardData = extractBasicCardData(result.data.pokemon);
+  const ids = result.data.pokemon.map((pokemon: { id: number }) => pokemon.id);
   const maxNum = result.data.pokemon_aggregate.aggregate.count;
-  return { cardData, maxNum };
+  return { ids, maxNum };
 }
 
 export async function getExtendedInfo(id: number): Promise<PokemonExtendedStats>  {

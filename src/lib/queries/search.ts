@@ -1,8 +1,8 @@
 import { pokeGraphqlUrl } from "@/lib/data/consts";
-import { SearchResult } from "@/lib/interfaces/responses";
 
+async function fetchIds(query?: string): Promise<number[]> {
+  const queryStr = query ? `(where: {${query}})` : '';
 
-export async function searchByName(name: string): Promise<SearchResult[]> {
   const response = await fetch(pokeGraphqlUrl, {
     method: "POST",
     headers: {
@@ -11,9 +11,8 @@ export async function searchByName(name: string): Promise<SearchResult[]> {
     body: JSON.stringify({
       query: `
         query {
-          pokemon(where: {name: {_iregex: "${name}"}}) {
+          pokemon${queryStr} {
             id
-            name
           }
         }
       `,
@@ -25,28 +24,18 @@ export async function searchByName(name: string): Promise<SearchResult[]> {
     throw new Error(result.errors[0].message);
   }
 
-  return result.data.pokemon;
+  const ids = result.data.pokemon.map((pokemon: { id: number }) => pokemon.id);
+  return ids;
+}
+
+export async function searchByName(name: string): Promise<number[]> {
+  const query = `name: {_iregex: "${name}"}`;
+  const ids = await fetchIds(query);
+  return ids;
 }
 
 export async function getRandomIds(count: number = 1): Promise<number[]> {
-  const response = await fetch(pokeGraphqlUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: `
-        query {
-          pokemon{
-            id
-          }
-        }
-      `,
-    }),
-  });
-
-  const result = await response.json();
-  const ids: number[] = result.data.pokemon.map((pokemon: { id: number }) => pokemon.id);
+  const ids = await fetchIds();
   const randomIds = [];
   for (let i = 0; i < count; i++) {
     const randomIndex = Math.floor(Math.random() * ids.length);

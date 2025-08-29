@@ -1,13 +1,12 @@
-import TypesBanner from "@/components/parts/typesBanner";
+import TypesBanner from "@/components/sectors/typesBanner";
 import LoadingSpinner from "@/components/parts/loadingSpinner";
 import { Suspense } from "react";
 import { TypesPageProp } from "@/lib/interfaces/props";
 import { notFound } from "next/navigation";
-import CardGrid from "@/components/parts/cardGrid";
+import CardGrid from "@/components/sectors/cardGrid";
 import { defaultPageStart, defaultPageLimit } from "@/lib/data/consts";
 import { getPageByType } from "@/lib/queries/fetchData";
-import PageNavigator from "@/components/parts/pageNavigator";
-import ContentContainer from "@/components/sectors/contentContainer";
+import PageNavigator from "@/components/sectors/pageNavigator";
 
 interface PageProps {
   params: Promise<{
@@ -38,19 +37,12 @@ export default async function TypesPageWrapper(props: PageProps) {
 async function TypesPage({ type_id, page, limit }: TypesPageProp) {
   const result = await getPageByType(type_id, page, limit);
   const maxPages = Math.ceil(result.maxNum / limit);
-  const cardsData = result.cardData;
 
   return (
     <>
-      <ContentContainer type="strong">
-        <TypesBanner type_id={type_id} />
-      </ContentContainer>
-      <ContentContainer className="flex justify-center p-3">
-        <PageNavigator basePath={`/types/${type_id}`} currentPage={page} maxPages={maxPages} />
-      </ContentContainer>
-      <ContentContainer type="weak" className="py-6">
-        <CardGrid cards={cardsData} />
-      </ContentContainer>
+      <TypesBanner type_id={type_id} />
+      <PageNavigator basePath={`/types/${type_id}`} currentPage={page} maxPages={maxPages} />
+      <CardGrid ids={result.ids} />
     </>
   )
 }

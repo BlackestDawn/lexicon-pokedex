@@ -1,46 +1,24 @@
-import ContentContainer from "@/components/sectors/contentContainer";
-import LoadingSpinner from "@/components/parts/loadingSpinner";
-import { Suspense } from "react";
-import { searchByName } from "@/lib/queries/search";
+import ContentContainer from "@/components/parts/contentContainer";
 import SearchBox from "@/components/parts/searchbox";
 import SearchResults from "@/components/parts/searchResult";
-import type { SearchResult } from "@/lib/interfaces/responses";
+import MainHeader from "@/components/sectors/mainHeader";
 
-interface SearchParams {
-  searchParams: {
+interface PageProps {
+  searchParams: Promise<{
     query: string;
-  }
+  }>
 }
 
-export default async function SearchPageWrapper({ searchParams }: SearchParams) {
+export default async function SearchPageWrapper({ searchParams }: PageProps) {
   const { query } = await searchParams;
 
   return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <SearchPage query={query} />
-    </Suspense>
-  )
-}
-
-async function SearchPage({ query }: { query: string}) {
-  let results: SearchResult[] = [];
-  if (query) results = await searchByName(query) as SearchResult[];
-
-  return (
     <>
-      <ContentContainer type="strong" className="py-8">
-        <h2 className="font-jersey text-4xl font-bold text-center">Search Results</h2>
-      </ContentContainer>
+      <MainHeader />
       <ContentContainer>
         <SearchBox />
       </ContentContainer>
-      <ContentContainer type="weak" className="py-8">
-        { query ? (
-          <SearchResults result={results} />
-        ) : (
-          <p className="text-2xl font-bold text-center">No search term supplied.</p>
-        )}
-      </ContentContainer>
+      <SearchResults query={query} />
     </>
   );
 }

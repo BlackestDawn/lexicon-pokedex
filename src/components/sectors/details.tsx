@@ -13,9 +13,6 @@ export default async function DetailsPage({ id }: PageProps) {
   const sprites = response.pokemonsprites[0];
   const showGenders = response.pokemonspecy.has_gender_differences;
 
-  console.log("show genders:", showGenders);
-  console.dir(response, { depth: null });
-
   return (
     <>
       <ContentContainer>

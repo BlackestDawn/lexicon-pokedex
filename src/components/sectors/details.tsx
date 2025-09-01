@@ -29,7 +29,7 @@ export default async function DetailsPage({ id }: PageProps) {
             sprites={sprites}
             altText={response.name}
             genderDifference={showGenders}
-            />
+          />
           <div className="flex gap-8 mx-auto">
             <table className="w-full capitalize max-w-1/4 min-w-3xs">
               <thead className="font-bold">
@@ -77,7 +77,7 @@ export default async function DetailsPage({ id }: PageProps) {
                 <div className="w-full capitalize p-2">
                   {response.pokemonmoves.map((move, i) => (
                     <div key={move.move.id}>
-                      {i > 0 && <hr className="text-black" />}
+                      {i > 0 && <hr className="border-0 h-0.5 bg-black my-1" />}
                       <p className="m-1">{move.move.name.replaceAll("-", " ")}</p>
                       <p className="m-1 flex justify-between">
                         {move.move.accuracy !== null && <span>Accuracy: {move.move.accuracy}</span>}
@@ -98,7 +98,7 @@ export default async function DetailsPage({ id }: PageProps) {
                 <div className="w-full capitalize p-2">
                   {response.encounters.map((encounter, i) => (
                     <div key={encounter.locationarea.id}>
-                      {i > 0 && <hr className="bg-black" />}
+                      {i > 0 && <hr className="border-0 h-0.5 bg-black my-1" />}
                       <p className="m-1">{encounter.locationarea.name.replaceAll("-", " ")}</p>
                       <p className="m-1">Level range: {encounter.min_level} - {encounter.max_level}</p>
                     </div>

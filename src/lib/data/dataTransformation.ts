@@ -25,6 +25,7 @@ export function extractBasicCardData(data: PokemonBaseStats[]): BasicCardProps[]
       stats: stats,
       types: types,
       imageUrl: getImageUrlFromId(pokemon.id),
+      color: pokemon.pokemonspecy.pokemoncolor.name,
     };
   });
 }

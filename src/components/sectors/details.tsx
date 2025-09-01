@@ -1,9 +1,8 @@
-import Image from "next/image";
 import { getExtendedInfo } from "@/lib/queries/fetchData";
-import { getImageUrlFromId } from "@/lib/data/helpers";
 import TypeTag from "@/components/details/typeTag";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import ContentContainer from "../parts/contentContainer";
+import ContentContainer from "@/components/parts/contentContainer";
+import DetailsImageBox from "@/components/parts/detailsImageBox";
 
 interface PageProps {
   id: number;
@@ -11,6 +10,11 @@ interface PageProps {
 
 export default async function DetailsPage({ id }: PageProps) {
   const response = await getExtendedInfo(id);
+  const sprites = response.pokemonsprites[0];
+  const showGenders = response.pokemonspecy.has_gender_differences;
+
+  console.log("show genders:", showGenders);
+  console.dir(response, { depth: null });
 
   return (
     <>
@@ -21,12 +25,11 @@ export default async function DetailsPage({ id }: PageProps) {
       </ContentContainer>
       <ContentContainer type="weak">
         <div className="flex flex-col align-middle justify-center gap-4 py-6">
-
-          <div className="flex justify-center align-middle gap-4">
-            <div>
-              <Image src={getImageUrlFromId(id)} alt={response.name} width={256} height={256} />
-            </div>
-          </div>
+          <DetailsImageBox
+            sprites={sprites}
+            altText={response.name}
+            genderDifference={showGenders}
+            />
           <div className="flex gap-8 mx-auto">
             <table className="w-full capitalize max-w-1/4 min-w-3xs">
               <thead className="font-bold">
@@ -74,7 +77,7 @@ export default async function DetailsPage({ id }: PageProps) {
                 <div className="w-full capitalize p-2">
                   {response.pokemonmoves.map((move, i) => (
                     <div key={move.move.id}>
-                      {i > 0 && <hr />}
+                      {i > 0 && <hr className="text-black" />}
                       <p className="m-1">{move.move.name.replaceAll("-", " ")}</p>
                       <p className="m-1 flex justify-between">
                         {move.move.accuracy !== null && <span>Accuracy: {move.move.accuracy}</span>}
@@ -95,7 +98,7 @@ export default async function DetailsPage({ id }: PageProps) {
                 <div className="w-full capitalize p-2">
                   {response.encounters.map((encounter, i) => (
                     <div key={encounter.locationarea.id}>
-                      {i > 0 && <hr />}
+                      {i > 0 && <hr className="bg-black" />}
                       <p className="m-1">{encounter.locationarea.name.replaceAll("-", " ")}</p>
                       <p className="m-1">Level range: {encounter.min_level} - {encounter.max_level}</p>
                     </div>

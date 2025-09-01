@@ -4,6 +4,7 @@ export interface BasicCardProps {
   stats: BaseStatMatrix;
   types: BasicTypeMatrix[];
   imageUrl: string;
+  color?: string;
 }
 
 export interface BaseStatMatrix {

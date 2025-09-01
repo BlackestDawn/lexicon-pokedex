@@ -11,9 +11,10 @@ export default function BasicCard({
   stats,
   types,
   imageUrl,
+  color,
 }: BasicCardProps) {
 
-  const accentColor = getTypeColor(types[0].name);
+  const accentColor = color || getTypeColor(types[0].name);
 
   return (
     <Link href={`/pokedex/${id}`} className="block h-full">
@@ -31,7 +32,7 @@ export default function BasicCard({
           <div className="mt-2">
             <span
               className="px-2 py-1 rounded-full min-content"
-              style={{ color: accentColor, background: `color-mix(in srgb, ${accentColor} 20%, white)` }}
+              style={{ color: accentColor === "white" ? "black" : accentColor, background: `color-mix(in srgb, ${accentColor} 20%, white)` }}
             >
               {`#${id.toString().padStart(4, "0")}`}
             </span>

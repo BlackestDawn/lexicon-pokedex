@@ -4,20 +4,26 @@ import { PaginatedData, PokemonExtendedStats } from "@/lib/interfaces/responses"
 import { extractBasicCardData } from "@/lib/data/dataTransformation";
 
 const baseInfoPart = `
+id
+name
+pokemonstats {
+  base_stat
+  stat {
+    name
+  }
+}
+pokemontypes {
+  type {
     id
     name
-    pokemonstats {
-      base_stat
-      stat {
-        name
-      }
-    }
-    pokemontypes {
-      type {
-        id
-        name
-      }
-    }
+  }
+}
+pokemonspecy {
+  pokemoncolor {
+    name
+  }
+  has_gender_differences
+}
 `;
 
 export async function getBasicInfoById(id: number[]): Promise<BasicCardProps[]>  {
@@ -140,6 +146,9 @@ query getExtendedStats {
         power
         priority
       }
+    }
+    pokemonsprites {
+      sprites
     }
   }
 }`}),

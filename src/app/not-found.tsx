@@ -11,7 +11,7 @@ export default function NotFound() {
             href="/"
             className="px-2 py-1 rounded-full text-white bg-gradient-to-r from-orange-400 to-red-400"
           >
-            How about starting again from here
+            How about starting again from the beginning?
           </Link>
         </div>
       </div>

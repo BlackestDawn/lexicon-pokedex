@@ -41,7 +41,7 @@ export default function BasicCard({
         <CardContent className="text-center space-y-2 flex-1 flex flex-col">
           <div className="flex items-center justify-center">
             <h3 className="text-lg capitalize font-bold leading-tight">
-              {name}
+              {name.replaceAll("-", " ")}
             </h3>
           </div>
           <div className="flex gap-2 justify-center flex-wrap">
